@@ -107,6 +107,10 @@ public class Board {
      * @param pawn The pawn to add.
      */
     public void addPawn(Pawn pawn) {
+        // If first pawn, get as current one
+        if (pawns.size() == 0) {
+            currentPawn = pawn;
+        }
         if (getSquareContent(pawn.getX(),
                              pawn.getY()) == null)
             this.pawns.add(pawn);
