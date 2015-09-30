@@ -24,11 +24,7 @@ public class BoardTest {
     Pawn pawn_4_1;
     Pawn pawn_0_0;
 
-    String result = "........\n"+
-                    ".c......\n"+
-                    "....a...\n"+
-                    "..d.g...\n"+
-                    "....#...\n";
+    String toStringValue;
 
     /*
         Initialize the board with 5 pawns
@@ -39,6 +35,11 @@ public class BoardTest {
         board.addPawn(pawn_4_2);
         board.addPawn(pawn_2_1);
         board.addPawn(pawn_4_1);
+        toStringValue = "........\n"+
+                        ".c......\n"+
+                        "....a...\n"+
+                        "..d.g...\n"+
+                        "....#...\n";
     }
 
     @Before
@@ -50,6 +51,12 @@ public class BoardTest {
         pawn_4_1 = mock(Pawn.class);
         pawn_0_0 = mock(Pawn.class); // To be add later
         board = new Board(0, 8, 5, 4, 0);
+
+        toStringValue = "........\n"+
+                        "........\n"+
+                        "........\n"+
+                        "........\n"+
+                        "....#...\n";
 
         when(pawn_1_3.getGold()).thenReturn(0);
         when(pawn_5_5.getGold()).thenReturn(1);
@@ -470,7 +477,7 @@ public class BoardTest {
     @Test
     public void testToString() throws Exception {
         addPawns();
-        assertEquals(result, board.toString());
+        assertEquals(toStringValue, board.toString());
     }
 
     /**
