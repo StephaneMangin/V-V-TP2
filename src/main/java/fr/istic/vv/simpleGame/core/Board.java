@@ -1,6 +1,7 @@
 package fr.istic.vv.simpleGame.core;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -42,6 +43,11 @@ public class Board {
      */
     private Pawn currentPawn;
 
+    /*
+     * This w does provide a missplaced number of pawn
+     */
+    private List<Pawn> unplacedPawns;
+
 
 
     public int getXSize() {
@@ -68,13 +74,17 @@ public class Board {
         this.xBonusSquare = xBonus;
         this.yBonusSquare = yBonus;
         this.pawns = new ArrayList<Pawn>();
-        for(int i = 0; i<numberOfPawns; i++) {
-            Pawn pawn = new Pawn(Character.forDigit(i, 10),
-                                 random.nextInt(xSize),random.nextInt(ySize),this);
-            this.addPawn(pawn);
-        }
-        // Allow to not add pawns at init, but null return on getNextPawn call.
+        this.unplacedPawns = new ArrayList<Pawn>();
         if (numberOfPawns > 0) {
+            for (int i = 0; i < numberOfPawns; i++) {
+                // This method does not garantied that a pawn will not be placed inside an already occupied square
+                Pawn pawn = new Pawn(Character.forDigit(i, numberOfPawns),
+                        random.nextInt(xSize), random.nextInt(ySize), this);
+                if (!this.addPawn(pawn)) {
+                    unplacedPawns.add(pawn);
+                }
+            }
+            // Allow to not add pawns at init, but null return on getNextPawn call.
             currentPawn = pawns.get(0);
         }
     }
@@ -106,14 +116,19 @@ public class Board {
      * Adds a pawn to the board.
      * @param pawn The pawn to add.
      */
-    public void addPawn(Pawn pawn) {
+    public Boolean addPawn(Pawn pawn) {
         // If first pawn, get as current one
+        Boolean placed = false;
         if (pawns.size() == 0) {
             currentPawn = pawn;
         }
-        if (getSquareContent(pawn.getX(),
-                             pawn.getY()) == null)
-            this.pawns.add(pawn);
+        if (pawn.getX() <= xSize && pawn.getY() <= ySize) {
+            if (getSquareContent(pawn.getX(), pawn.getY()) == null) {
+                this.pawns.add(pawn);
+                placed = true;
+            }
+        }
+        return placed;
     }
 
     /**
@@ -213,4 +228,8 @@ public class Board {
 		pawns.clear();
 		currentPawn = null;
 	}
+
+    public List<Pawn> getUnplacedPawns() {
+        return unplacedPawns;
+    }
 }
