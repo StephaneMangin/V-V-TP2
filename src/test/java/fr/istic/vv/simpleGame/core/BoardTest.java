@@ -280,7 +280,34 @@ public class BoardTest {
     }
 
     /**
-     * Tests the "getNextPawn" method.
+     * Tests the "getNextPawn" method with no pawn added.
+     *
+     * @see Board#getNextPawn()
+     * @type Functional
+     * @oracle It must return true.
+     * @passed Yes
+     */
+    @Test
+    public void testGetNextPawn_Empty() throws Exception {
+        assertEquals(null, board.getNextPawn());
+    }
+
+    /**
+     * Tests the "getNextPawn" method with only one pawn added.
+     *
+     * @see Board#getNextPawn()
+     * @type Functional
+     * @oracle It must return true.
+     * @passed Yes
+     */
+    @Test
+    public void testGetNextPawn_OnePawn() throws Exception {
+        board.addPawn(pawn_0_0);
+        assertEquals(pawn_0_0, board.getNextPawn());
+    }
+
+    /**
+     * Tests the "getNextPawn" method with added pawns.
      *
      * @see Board#getNextPawn()
      * @type Functional

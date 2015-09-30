@@ -160,9 +160,6 @@ public class Board {
             return pawns.get(0);
         }
         else {
-            if (currentPawn == null) {
-                currentPawn = pawns.get(0);
-            }
             Pawn result = currentPawn;
             currentPawn = this.pawns.get((this.pawns.indexOf(
                                               currentPawn)+1)%this.pawns.size());
