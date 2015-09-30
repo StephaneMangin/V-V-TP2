@@ -73,8 +73,10 @@ public class Board {
                                  random.nextInt(xSize),random.nextInt(ySize),this);
             this.addPawn(pawn);
         }
-
-        currentPawn = pawns.get(0);
+        // Allow to not add pawns at init, but null return on getNextPawn call.
+        if (numberOfPawns > 0) {
+            currentPawn = pawns.get(0);
+        }
     }
 
     /**
@@ -146,11 +148,17 @@ public class Board {
      * @return The next pawn that is allowed to play.
      */
     public Pawn getNextPawn() {
-        if (pawns.size() == 1) {
+        if (pawns.size() == 0) {
+            return null;
+        }
+        else if (pawns.size() == 1) {
             currentPawn = pawns.get(0);
             return pawns.get(0);
         }
         else {
+            if (currentPawn == null) {
+                currentPawn = pawns.get(0);
+            }
             Pawn result = currentPawn;
             currentPawn = this.pawns.get((this.pawns.indexOf(
                                               currentPawn)+1)%this.pawns.size());
