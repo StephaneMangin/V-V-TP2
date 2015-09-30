@@ -1,4 +1,4 @@
-package simpleGame.core;
+package fr.istic.vv.simpleGame.core;
 
 import java.util.ArrayList;
 import java.util.Random;

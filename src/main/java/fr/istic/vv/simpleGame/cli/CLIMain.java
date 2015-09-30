@@ -1,10 +1,10 @@
-package simpleGame.cli;
+package fr.istic.vv.simpleGame.cli;
 
 import java.util.Scanner;
 
-import simpleGame.core.Direction;
-import simpleGame.core.Game;
-import simpleGame.exception.OutOfBoardException;
+import fr.istic.vv.simpleGame.core.Direction;
+import fr.istic.vv.simpleGame.core.Game;
+import fr.istic.vv.simpleGame.exception.OutOfBoardException;
 
 public class CLIMain {
 	

@@ -1,4 +1,4 @@
-package simpleGame.core;
+package fr.istic.vv.simpleGame.core;
 
 /**
  * The directions that can be taken by a moving Pawn.

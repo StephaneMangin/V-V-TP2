@@ -1,6 +1,6 @@
-package simpleGame.core;
+package fr.istic.vv.simpleGame.core;
 
-import simpleGame.exception.OutOfBoardException;
+import fr.istic.vv.simpleGame.exception.OutOfBoardException;
 
 public class Pawn {
 
@@ -124,7 +124,7 @@ public class Pawn {
      * The enemy pawn should suffer 1 damage,
      * but it should suffer 2 damages if the current pawn
      * is on a bonus square.
-     * @param ennemy The attacked pawn.
+     * @param enemy The attacked pawn.
      * @return A message that explain what happened during the assault.
      */
     private String attack(Pawn enemy) {

@@ -1,8 +1,8 @@
-package simpleGame.core;
+package fr.istic.vv.simpleGame.core;
 
 import java.util.Random;
 
-import simpleGame.exception.OutOfBoardException;
+import fr.istic.vv.simpleGame.exception.OutOfBoardException;
 
 /**
  * Class that allows to displayer the board and control the game.

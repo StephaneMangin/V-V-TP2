@@ -1,4 +1,4 @@
-package simpleGame.exception;
+package fr.istic.vv.simpleGame.exception;
 
 public class OutOfBoardException extends
     Exception {
