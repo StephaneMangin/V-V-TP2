@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -17,12 +20,13 @@ import static org.mockito.Mockito.*;
 public class BoardTest {
 
     Board board;
-    Pawn pawn_1_3;
-    Pawn pawn_5_5;
-    Pawn pawn_4_2;
-    Pawn pawn_2_1;
-    Pawn pawn_4_1;
-    Pawn pawn_0_0;
+    Pawn pawn_1_3_z;
+    Pawn pawn_5_5_d;
+    Pawn pawn_5_5_y;
+    Pawn pawn_4_2_a;
+    Pawn pawn_2_1_b;
+    Pawn pawn_4_1_g;
+    Pawn pawn_0_0_n;
 
     String toStringValue;
 
@@ -30,68 +34,76 @@ public class BoardTest {
         Initialize the board with 5 pawns
     */
     private void addPawns() {
-        board.addPawn(pawn_1_3);
-        board.addPawn(pawn_5_5);
-        board.addPawn(pawn_4_2);
-        board.addPawn(pawn_2_1);
-        board.addPawn(pawn_4_1);
-        toStringValue = "........\n"+
-                        ".c......\n"+
-                        "....a...\n"+
-                        "..d.g...\n"+
-                        "....#...\n";
+        board.addPawn(pawn_1_3_z);
+        board.addPawn(pawn_5_5_d);
+        board.addPawn(pawn_4_2_a);
+        board.addPawn(pawn_2_1_b);
+        board.addPawn(pawn_4_1_g);
+        toStringValue = ".....d..\n"+
+                "........\n"+
+                ".c......\n"+
+                "....a...\n"+
+                "..b.g...\n"+
+                "....#...\n";
     }
 
     @Before
     public void setUp() {
-        pawn_1_3 = mock(Pawn.class);
-        pawn_5_5 = mock(Pawn.class);
-        pawn_4_2 = mock(Pawn.class);
-        pawn_2_1 = mock(Pawn.class);
-        pawn_4_1 = mock(Pawn.class);
-        pawn_0_0 = mock(Pawn.class); // To be add later
-        board = new Board(0, 8, 5, 4, 0);
+        pawn_1_3_z = mock(Pawn.class);
+        pawn_5_5_d = mock(Pawn.class);
+        pawn_5_5_y = mock(Pawn.class);
+        pawn_4_2_a = mock(Pawn.class);
+        pawn_2_1_b = mock(Pawn.class);
+        pawn_4_1_g = mock(Pawn.class);
+        pawn_0_0_n = mock(Pawn.class); // To be add later
+        board = new Board(0, 8, 6, 4, 0);
 
         toStringValue = "........\n"+
-                        "........\n"+
-                        "........\n"+
-                        "........\n"+
-                        "....#...\n";
+                "........\n"+
+                "........\n"+
+                "........\n"+
+                "........\n"+
+                "....#...\n";
 
-        when(pawn_1_3.getGold()).thenReturn(0);
-        when(pawn_5_5.getGold()).thenReturn(1);
-        when(pawn_4_2.getGold()).thenReturn(3);
-        when(pawn_2_1.getGold()).thenReturn(2);
-        when(pawn_4_1.getGold()).thenReturn(0);
-        when(pawn_0_0.getGold()).thenReturn(0);
+        when(pawn_1_3_z.getGold()).thenReturn(0);
+        when(pawn_5_5_d.getGold()).thenReturn(1);
+        when(pawn_5_5_y.getGold()).thenReturn(0); // Test the unplaced property
+        when(pawn_4_2_a.getGold()).thenReturn(3);
+        when(pawn_2_1_b.getGold()).thenReturn(2);
+        when(pawn_4_1_g.getGold()).thenReturn(0);
+        when(pawn_0_0_n.getGold()).thenReturn(0);
 
-        when(pawn_1_3.getLetter()).thenReturn('z');
-        when(pawn_5_5.getLetter()).thenReturn('d');
-        when(pawn_4_2.getLetter()).thenReturn('a');
-        when(pawn_2_1.getLetter()).thenReturn('d');
-        when(pawn_4_1.getLetter()).thenReturn('g');
-        when(pawn_0_0.getLetter()).thenReturn('n');
+        when(pawn_1_3_z.getLetter()).thenReturn('z');
+        when(pawn_5_5_d.getLetter()).thenReturn('d');
+        when(pawn_5_5_y.getLetter()).thenReturn('y');
+        when(pawn_4_2_a.getLetter()).thenReturn('a');
+        when(pawn_2_1_b.getLetter()).thenReturn('b');
+        when(pawn_4_1_g.getLetter()).thenReturn('g');
+        when(pawn_0_0_n.getLetter()).thenReturn('n');
 
-        when(pawn_1_3.isDead()).thenReturn(false);
-        when(pawn_5_5.isDead()).thenReturn(false);
-        when(pawn_4_2.isDead()).thenReturn(false);
-        when(pawn_2_1.isDead()).thenReturn(false);
-        when(pawn_4_1.isDead()).thenReturn(true);
-        when(pawn_0_0.isDead()).thenReturn(false);
+        when(pawn_1_3_z.isDead()).thenReturn(false);
+        when(pawn_5_5_d.isDead()).thenReturn(false);
+        when(pawn_5_5_y.isDead()).thenReturn(false);
+        when(pawn_4_2_a.isDead()).thenReturn(false);
+        when(pawn_2_1_b.isDead()).thenReturn(false);
+        when(pawn_4_1_g.isDead()).thenReturn(true);
+        when(pawn_0_0_n.isDead()).thenReturn(false);
 
-        when(pawn_1_3.getX()).thenReturn(1);
-        when(pawn_5_5.getX()).thenReturn(5);
-        when(pawn_4_2.getX()).thenReturn(4);
-        when(pawn_2_1.getX()).thenReturn(2);
-        when(pawn_4_1.getX()).thenReturn(4);
-        when(pawn_0_0.getX()).thenReturn(0);
+        when(pawn_1_3_z.getX()).thenReturn(1);
+        when(pawn_5_5_d.getX()).thenReturn(5);
+        when(pawn_5_5_y.getX()).thenReturn(5);
+        when(pawn_4_2_a.getX()).thenReturn(4);
+        when(pawn_2_1_b.getX()).thenReturn(2);
+        when(pawn_4_1_g.getX()).thenReturn(4);
+        when(pawn_0_0_n.getX()).thenReturn(0);
 
-        when(pawn_1_3.getY()).thenReturn(3);
-        when(pawn_5_5.getY()).thenReturn(5);
-        when(pawn_4_2.getY()).thenReturn(2);
-        when(pawn_2_1.getY()).thenReturn(1);
-        when(pawn_4_1.getY()).thenReturn(1);
-        when(pawn_0_0.getY()).thenReturn(0);
+        when(pawn_1_3_z.getY()).thenReturn(3);
+        when(pawn_5_5_d.getY()).thenReturn(5);
+        when(pawn_5_5_y.getY()).thenReturn(5);
+        when(pawn_4_2_a.getY()).thenReturn(2);
+        when(pawn_2_1_b.getY()).thenReturn(1);
+        when(pawn_4_1_g.getY()).thenReturn(1);
+        when(pawn_0_0_n.getY()).thenReturn(0);
 
     }
 
@@ -110,9 +122,26 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testEmptyConstructor() {
+    public void testEmptyPawnsConstructor() {
         board = new Board(0, 8, 5, 4, 0);
         assertEquals(0, board.numberOfPawns());
+    }
+
+    /**
+     * Tests the constructor with empty values.
+     *
+     * @see Board#Board(int p, int x, int y, int bx, int by)
+     * @type Functional
+     * @input p=0, x=0, y=0, bx=0, by=0
+     * @oracle It must return true.
+     * @passed Yes
+     */
+    @Test
+    public void testEmptyConstructor() {
+        board = new Board(0, 0, 0, 0, 0);
+        assertEquals(0, board.numberOfPawns());
+        assertEquals(0, board.getXSize());
+        assertEquals(0, board.getYSize());
     }
 
     /**
@@ -171,7 +200,7 @@ public class BoardTest {
      * </pre>
      */
     @Test
-    public void testConstructor() {
+    public void testNonEMptyPawnsConstructor() {
         board = new Board(15, 8, 5, 4, 0);
         assertEquals(15 - board.getUnplacedPawns().size(), board.numberOfPawns());
     }
@@ -201,7 +230,7 @@ public class BoardTest {
     @Test
     public void testGetYSize() {
         addPawns();
-        assertEquals(board.getYSize(), 5);
+        assertEquals(board.getYSize(), 6);
     }
 
     /**
@@ -216,7 +245,7 @@ public class BoardTest {
     @Test
     public void testGetSquareContentNonEmpty() {
         addPawns();
-        assertEquals(board.getSquareContent(1, 3), pawn_1_3);
+        assertEquals(board.getSquareContent(1, 3), pawn_1_3_z);
     }
 
     /**
@@ -246,7 +275,7 @@ public class BoardTest {
     @Test
     public void testRemovePawn_WithSquareContent() {
         addPawns();
-        board.removePawn(pawn_1_3);
+        board.removePawn(pawn_1_3_z);
         assertEquals(board.getSquareContent(1, 3), null);
     }
 
@@ -262,7 +291,7 @@ public class BoardTest {
     @Test
     public void testRemovePawn_WithNumberOfPawns() {
         addPawns();
-        board.removePawn(pawn_0_0);
+        board.removePawn(pawn_0_0_n);
         assertNotEquals(board.numberOfPawns(), 4);
     }
 
@@ -385,8 +414,8 @@ public class BoardTest {
      */
     @Test
     public void testGetNextPawn_OnePawn() {
-        board.addPawn(pawn_0_0);
-        assertEquals(pawn_0_0, board.getNextPawn());
+        board.addPawn(pawn_0_0_n);
+        assertEquals(pawn_0_0_n, board.getNextPawn());
     }
 
     /**
@@ -400,13 +429,13 @@ public class BoardTest {
     @Test
     public void testGetNextPawn() {
         addPawns();
-        assertEquals(pawn_1_3, board.getNextPawn());
-        assertEquals(pawn_5_5, board.getNextPawn());
-        assertEquals(pawn_4_2, board.getNextPawn());
-        assertEquals(pawn_2_1, board.getNextPawn());
-        assertEquals(pawn_4_1, board.getNextPawn());
-        assertEquals(pawn_1_3, board.getNextPawn());
-        assertEquals(pawn_5_5, board.getNextPawn());
+        assertEquals(pawn_1_3_z, board.getNextPawn());
+        assertEquals(pawn_5_5_d, board.getNextPawn());
+        assertEquals(pawn_4_2_a, board.getNextPawn());
+        assertEquals(pawn_2_1_b, board.getNextPawn());
+        assertEquals(pawn_4_1_g, board.getNextPawn());
+        assertEquals(pawn_1_3_z, board.getNextPawn());
+        assertEquals(pawn_5_5_d, board.getNextPawn());
     }
 
     /**
@@ -493,5 +522,38 @@ public class BoardTest {
         addPawns();
         board.removeAllPawns();
         assertEquals(0, board.numberOfPawns());
+    }
+
+    /**
+     * Tests the "getUnplacedPawns" method.
+     *
+     * @see Board#getUnplacedPawns()
+     * @type Functional
+     * @oracle It must return true.
+     * @passed No
+     * @correction <pre>
+     * l.80
+     * -                if (!this.addPawn(pawn)) {
+     * -                    unplacedPawns.add(pawn);
+     * -                }
+     * +                this.addPawn(pawn);
+     * l.115
+     * +     * @return True if the pawn has been placed or false either.
+     * l.126
+     * +            } else {
+     * +                unplacedPawns.add(pawn);
+     * +            }
+     * +        } else {
+     * +            unplacedPawns.add(pawn);
+     *
+     * </pre>
+     */
+    @Test
+    public void testGetUnplacedPawns() {
+        addPawns();
+        ArrayList<Pawn> unplacedPaws = new ArrayList<>();
+        unplacedPaws.add(pawn_5_5_y);
+        board.addPawn(pawn_5_5_y);
+        assertEquals(unplacedPaws, board.getUnplacedPawns());
     }
 }

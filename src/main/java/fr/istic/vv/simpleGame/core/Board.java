@@ -80,9 +80,7 @@ public class Board {
                 // This method does not garantied that a pawn will not be placed inside an already occupied square
                 Pawn pawn = new Pawn(Character.forDigit(i, numberOfPawns),
                         random.nextInt(xSize), random.nextInt(ySize), this);
-                if (!this.addPawn(pawn)) {
-                    unplacedPawns.add(pawn);
-                }
+                this.addPawn(pawn);
             }
             // Allow to not add pawns at init, but null return on getNextPawn call.
             currentPawn = pawns.get(0);
@@ -115,6 +113,7 @@ public class Board {
     /**
      * Adds a pawn to the board.
      * @param pawn The pawn to add.
+     * @return True if the pawn has been placed or false either.
      */
     public Boolean addPawn(Pawn pawn) {
         // If first pawn, get as current one
@@ -126,7 +125,11 @@ public class Board {
             if (getSquareContent(pawn.getX(), pawn.getY()) == null) {
                 this.pawns.add(pawn);
                 placed = true;
+            } else {
+                unplacedPawns.add(pawn);
             }
+        } else {
+            unplacedPawns.add(pawn);
         }
         return placed;
     }
