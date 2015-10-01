@@ -43,7 +43,7 @@ public class BoardTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         pawn_1_3 = mock(Pawn.class);
         pawn_5_5 = mock(Pawn.class);
         pawn_4_2 = mock(Pawn.class);
@@ -96,7 +96,7 @@ public class BoardTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         board = null;
     }
 
@@ -110,7 +110,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testEmptyConstructor() throws Exception {
+    public void testEmptyConstructor() {
         board = new Board(0, 8, 5, 4, 0);
         assertEquals(0, board.numberOfPawns());
     }
@@ -125,7 +125,7 @@ public class BoardTest {
      * @passed No
      * @correction <pre>
      * l.42
-     * +    private List<Pawn> unplacedPawns;
+     *  +    private List<Pawn> unplacedPawns;
      * l.68
      * -        for(int i = 0; i<numberOfPawns; i++) {
      * -            Pawn pawn = new Pawn(Character.forDigit(i, 10),
@@ -171,7 +171,7 @@ public class BoardTest {
      * </pre>
      */
     @Test
-    public void testConstructor() throws Exception {
+    public void testConstructor() {
         board = new Board(15, 8, 5, 4, 0);
         assertEquals(15 - board.getUnplacedPawns().size(), board.numberOfPawns());
     }
@@ -185,7 +185,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetXSize() throws Exception {
+    public void testGetXSize() {
         addPawns();
         assertEquals(board.getXSize(), 8);
     }
@@ -199,7 +199,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetYSize() throws Exception {
+    public void testGetYSize() {
         addPawns();
         assertEquals(board.getYSize(), 5);
     }
@@ -214,7 +214,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetSquareContentNonEmpty() throws Exception {
+    public void testGetSquareContentNonEmpty() {
         addPawns();
         assertEquals(board.getSquareContent(1, 3), pawn_1_3);
     }
@@ -229,7 +229,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetSquareContentEmpty() throws Exception {
+    public void testGetSquareContentEmpty() {
         addPawns();
         assertEquals(board.getSquareContent(1, 0), null);
     }
@@ -244,7 +244,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testRemovePawn_WithSquareContent() throws Exception {
+    public void testRemovePawn_WithSquareContent() {
         addPawns();
         board.removePawn(pawn_1_3);
         assertEquals(board.getSquareContent(1, 3), null);
@@ -260,7 +260,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testRemovePawn_WithNumberOfPawns() throws Exception {
+    public void testRemovePawn_WithNumberOfPawns() {
         addPawns();
         board.removePawn(pawn_0_0);
         assertNotEquals(board.numberOfPawns(), 4);
@@ -299,7 +299,7 @@ public class BoardTest {
      * </pre>
      */
     @Test
-    public void testAddPawn() throws Exception {
+    public void testAddPawn() {
         addPawns();
         assertEquals(5, board.numberOfPawns());
     }
@@ -314,7 +314,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testIsBonusSquare_True() throws Exception {
+    public void testIsBonusSquare_True() {
         addPawns();
         assertTrue(board.isBonusSquare(4, 0));
     }
@@ -329,7 +329,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testIsBonusSquare_False() throws Exception {
+    public void testIsBonusSquare_False() {
         addPawns();
         assertFalse(board.isBonusSquare(3, 1));
     }
@@ -343,7 +343,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testNumberOfPawns() throws Exception {
+    public void testNumberOfPawns() {
         addPawns();
         assertEquals(5, board.numberOfPawns());
     }
@@ -357,7 +357,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testMaxGold() throws Exception {
+    public void testMaxGold() {
         addPawns();
         assertEquals(3, board.maxGold());
     }
@@ -371,7 +371,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetNextPawn_Empty() throws Exception {
+    public void testGetNextPawn_Empty() {
         assertEquals(null, board.getNextPawn());
     }
 
@@ -384,7 +384,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetNextPawn_OnePawn() throws Exception {
+    public void testGetNextPawn_OnePawn() {
         board.addPawn(pawn_0_0);
         assertEquals(pawn_0_0, board.getNextPawn());
     }
@@ -398,7 +398,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testGetNextPawn() throws Exception {
+    public void testGetNextPawn() {
         addPawns();
         assertEquals(pawn_1_3, board.getNextPawn());
         assertEquals(pawn_5_5, board.getNextPawn());
@@ -419,7 +419,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testSquareContentSprite_CurrentPawn() throws Exception {
+    public void testSquareContentSprite_CurrentPawn() {
         addPawns();
         assertEquals('c', board.squareContentSprite(1, 3));
     }
@@ -433,7 +433,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testSquareContentSprite_EmptySquare() throws Exception {
+    public void testSquareContentSprite_EmptySquare() {
         addPawns();
         assertEquals('.', board.squareContentSprite(0, 1));
     }
@@ -447,7 +447,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testSquareContentSprite_CustomPawn() throws Exception {
+    public void testSquareContentSprite_CustomPawn() {
         addPawns();
         assertEquals('d', board.squareContentSprite(5, 5));
     }
@@ -461,7 +461,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testSquareContentSprite_BonusSquare() throws Exception {
+    public void testSquareContentSprite_BonusSquare() {
         addPawns();
         assertEquals('#', board.squareContentSprite(4, 0));
     }
@@ -475,7 +475,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testToString() throws Exception {
+    public void testToString() {
         addPawns();
         assertEquals(toStringValue, board.toString());
     }
@@ -489,7 +489,7 @@ public class BoardTest {
      * @passed Yes
      */
     @Test
-    public void testRemoveAllPawns() throws Exception {
+    public void testRemoveAllPawns() {
         addPawns();
         board.removeAllPawns();
         assertEquals(0, board.numberOfPawns());
