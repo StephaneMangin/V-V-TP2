@@ -100,10 +100,7 @@ public class Pawn {
             break;
         }
 
-        if 	(newy <= board.getYSize()
-                && newx <= board.getXSize()
-                && newy > 0
-                && newx > 0) {
+        if 	(newy < board.getYSize() && newx < board.getXSize() && newy >= 0 && newx >= 0) {
             Pawn content = board.getSquareContent(newx,newy);
             if (content == null) {
                 x = newx;

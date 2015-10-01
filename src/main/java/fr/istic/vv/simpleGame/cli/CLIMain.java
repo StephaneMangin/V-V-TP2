@@ -16,20 +16,20 @@ public class CLIMain {
         Scanner scanner = new Scanner(System.in);
         while(!game.isGameOver()) {
             System.out.println(game.toString());
-            int chosenint;
-            for (chosenint = -10;
-                    chosenint >= Direction.values().length
-                    || chosenint <0; chosenint=scanner.nextInt()) {
+            int maxValues = Direction.values().length;
+            int choice = -10;
+            do {
                 int counter = 0;
                 for(Direction d : Direction.values()) {
                     System.out.println(counter + ": "+d.name());
                     counter++;
                 }
                 System.out.println("Please chose a direction: ");
-            }
+                choice = scanner.nextInt();
+            } while (choice >= maxValues || choice < 0);
             try {
                 System.out.println(game.moveNextPawn(
-                                       Direction.values()[chosenint]));
+                                       Direction.values()[choice]));
             } catch (OutOfBoardException e) {
                 System.out.println("You can't go that way!");
             }
