@@ -22,7 +22,9 @@
 		</dependency>
 
 	</dependencies>
-
+	<properties>
+		<additionalparam>-Xdoclint:none</additionalparam>
+	</properties>
 	<build>
 		<plugins>
 
