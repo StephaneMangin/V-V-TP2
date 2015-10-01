@@ -16,13 +16,13 @@ public class PawnTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         board = new Board(0, 5, 5, 3, 3);
 
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         board = null;
     }
 
@@ -36,7 +36,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testGetX() throws Exception {
+    public void testGetX() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         assertEquals(3, pawn1.getX());
     }
@@ -51,7 +51,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testGetY() throws Exception {
+    public void testGetY() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         assertEquals(2, pawn1.getY());
 
@@ -67,7 +67,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testGetLetter() throws Exception {
+    public void testGetLetter() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         assertEquals('z', pawn1.getLetter());
     }
@@ -82,7 +82,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testGetGold_0() throws Exception {
+    public void testGetGold_0() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         assertEquals(0, pawn1.getGold());
     }
@@ -97,7 +97,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testGetGold_1() throws Exception {
+    public void testGetGold_1() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         Pawn pawn2 = new Pawn('y', 3, 1, board);
         board.addPawn(pawn1);
@@ -121,7 +121,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testMove() throws Exception {
+    public void testMove() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         pawn1.move(Direction.Up);
         assertEquals(3, pawn1.getY());
@@ -137,7 +137,7 @@ public class PawnTest {
      * @passed Yes
      */
     @Test
-    public void testIsDead() throws Exception {
+    public void testIsDead() {
         Pawn pawn1 = new Pawn('z', 3, 2, board);
         Pawn pawn2 = new Pawn('y', 3, 1, board);
         board.addPawn(pawn1);
