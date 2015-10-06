@@ -28,6 +28,10 @@ public class TestSequenceDiagram {
         board.addPawn(mockPawn1);
         when(mockPawn0.getGold()).thenReturn(1);
         when(mockPawn1.getGold()).thenReturn(3);
+        when(mockPawn0.getX()).thenReturn(3);
+        when(mockPawn0.getY()).thenReturn(3);
+        when(mockPawn1.getX()).thenReturn(4);
+        when(mockPawn1.getY()).thenReturn(4);
 
         // Test isGameOver with a mocked Board
         mockBoard = mock(Board.class);
@@ -51,6 +55,7 @@ public class TestSequenceDiagram {
 
     @Test
     public void testMaxGold() throws Exception {
+        assertEquals(2, board.numberOfPawns());
         assertEquals(3, board.maxGold());
     }
 
