@@ -23,6 +23,12 @@ public class Game {
     }
 
     /**
+     * Constructs a Game with a custom board.
+     */
+    public Game(Board board) {
+        this.board = board;
+    }
+    /**
      * The game is over if there is only one pawn left or if
      * a pawn possesses 5 gold or more.
      * @return true if the game is over
