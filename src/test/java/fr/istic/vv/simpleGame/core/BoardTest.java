@@ -536,7 +536,7 @@ public class BoardTest {
      *
      * @see Board#getUnplacedPawns()
      * @type Functional
-     * @oracle It must return true.
+     * @oracle It must return 2.
      * @passed No
      * @correction <pre>
      * l.80
