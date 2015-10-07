@@ -88,16 +88,16 @@ public class TestSequenceDiagram {
     }
 
     /**
-     * Tests the "maxGold" board's method with 10000 pawns.
+     * Tests the "maxGold" board's method with 10 pawns.
      *
      * @see Board#maxGold()
      * @type Functional
-     * @oracle Should value between 0 and 3
+     * @oracle Should return 0
      * @passed Yes
      */
     @Test
-    public void testMaxGold_With100Pawn() throws Exception {
-        Board board = new Board(10, 5, 5, 0, 0);
+    public void testMaxGold_With10Pawn() throws Exception {
+        Board board = new Board(10, 5, 5, 2, 4);
         assertEquals(0, board.maxGold());
     }
 
