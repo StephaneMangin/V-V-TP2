@@ -14,14 +14,51 @@ import static org.mockito.Mockito.when;
  */
 public class TestSequenceDiagram {
 
-    Game game;
-    Board board;
-    Board mockBoard;
+    /**
+     * Tests the "isGameOver" game's method with mocked board.
+     *
+     * @see Game#isGameOver()
+     * @type Functional
+     * @oracle Should return false
+     * @passed Yes
+     */
+    @Test
+    public void testIsGameOverFalse() throws Exception {
+        Board mockBoard = mock(Board.class);
+        Game game = new Game(mockBoard);
+        when(mockBoard.numberOfPawns()).thenReturn(2);
+        when(mockBoard.maxGold()).thenReturn(2);
+        assertFalse(game.isGameOver());
+    }
 
-    @Before
-    public void setUp() throws Exception {
-        // Prepare for maxGold test
-        board = new Board(0, 5, 5, 0, 0);
+    /**
+     * Tests the "isGameOver" game's method with mocked board.
+     *
+     * @see Game#isGameOver()
+     * @type Functional
+     * @oracle Should return true
+     * @passed Yes
+     */
+    @Test
+    public void testIsGameOverTrue() throws Exception {
+        Board mockBoard = mock(Board.class);
+        Game game = new Game(mockBoard);
+        when(mockBoard.numberOfPawns()).thenReturn(2);
+        when(mockBoard.maxGold()).thenReturn(3);
+        assertTrue(game.isGameOver());
+    }
+
+    /**
+     * Tests the "maxGold" board's method with mocked pawn.
+     *
+     * @see Board#maxGold()
+     * @type Functional
+     * @oracle Should return 3
+     * @passed Yes
+     */
+    @Test
+    public void testMaxGold_WithPawn() throws Exception {
+        Board board = new Board(0, 5, 5, 0, 0);
         Pawn mockPawn0 = mock(Pawn.class);
         Pawn mockPawn1 = mock(Pawn.class);
         when(mockPawn0.getGold()).thenReturn(1);
@@ -33,30 +70,35 @@ public class TestSequenceDiagram {
         board.addPawn(mockPawn0);
         board.addPawn(mockPawn1);
 
-        // Test isGameOver with a mocked Board
-        mockBoard = mock(Board.class);
-        game = new Game(mockBoard);
-        when(mockBoard.numberOfPawns()).thenReturn(2);
-        when(mockBoard.maxGold()).thenReturn(3);
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        game = null;
-        board = null;
-        mockBoard = null;
-    }
-
-    @Test
-    public void testIsGameOver() throws Exception {
-        assertEquals(true, game.isGameOver());
-    }
-
-    @Test
-    public void testMaxGold() throws Exception {
-        assertEquals(2, board.numberOfPawns());
         assertEquals(3, board.maxGold());
+    }
+
+    /**
+     * Tests the "maxGold" board's method with no pawn.
+     *
+     * @see Board#maxGold()
+     * @type Functional
+     * @oracle Should return 0
+     * @passed Yes
+     */
+    @Test
+    public void testMaxGold_WithoutPawn() throws Exception {
+        Board board = new Board(0, 5, 5, 0, 0);
+        assertEquals(0, board.maxGold());
+    }
+
+    /**
+     * Tests the "maxGold" board's method with 10000 pawns.
+     *
+     * @see Board#maxGold()
+     * @type Functional
+     * @oracle Should value between 0 and 3
+     * @passed Yes
+     */
+    @Test
+    public void testMaxGold_With100Pawn() throws Exception {
+        Board board = new Board(10, 5, 5, 0, 0);
+        assertEquals(0, board.maxGold());
     }
 
 }
