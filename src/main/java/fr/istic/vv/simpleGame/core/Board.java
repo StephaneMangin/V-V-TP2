@@ -121,7 +121,7 @@ public class Board {
         if (pawns.size() == 0) {
             currentPawn = pawn;
         }
-        if (pawn.getX() <= xSize && pawn.getY() <= ySize) {
+        if (pawn.getX() < xSize && pawn.getY() < ySize) {
             if (getSquareContent(pawn.getX(), pawn.getY()) == null) {
                 this.pawns.add(pawn);
                 placed = true;

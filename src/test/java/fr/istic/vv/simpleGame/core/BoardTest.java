@@ -27,6 +27,7 @@ public class BoardTest {
     Pawn pawn_2_1_b;
     Pawn pawn_4_1_g;
     Pawn pawn_0_0_n;
+    Pawn pawn_8_6_h;
 
     String toStringValue;
 
@@ -56,6 +57,7 @@ public class BoardTest {
         pawn_2_1_b = mock(Pawn.class);
         pawn_4_1_g = mock(Pawn.class);
         pawn_0_0_n = mock(Pawn.class); // To be add later
+        pawn_8_6_h = mock(Pawn.class); // To be add later. Pawn outside the board
         board = new Board(0, 8, 6, 4, 0);
 
         toStringValue = "........\n"+
@@ -72,6 +74,7 @@ public class BoardTest {
         when(pawn_2_1_b.getGold()).thenReturn(2);
         when(pawn_4_1_g.getGold()).thenReturn(0);
         when(pawn_0_0_n.getGold()).thenReturn(0);
+        when(pawn_8_6_h.getGold()).thenReturn(0);
 
         when(pawn_1_3_z.getLetter()).thenReturn('z');
         when(pawn_5_5_d.getLetter()).thenReturn('d');
@@ -80,6 +83,7 @@ public class BoardTest {
         when(pawn_2_1_b.getLetter()).thenReturn('b');
         when(pawn_4_1_g.getLetter()).thenReturn('g');
         when(pawn_0_0_n.getLetter()).thenReturn('n');
+        when(pawn_8_6_h.getLetter()).thenReturn('h');
 
         when(pawn_1_3_z.isDead()).thenReturn(false);
         when(pawn_5_5_d.isDead()).thenReturn(false);
@@ -88,6 +92,7 @@ public class BoardTest {
         when(pawn_2_1_b.isDead()).thenReturn(false);
         when(pawn_4_1_g.isDead()).thenReturn(true);
         when(pawn_0_0_n.isDead()).thenReturn(false);
+        when(pawn_8_6_h.isDead()).thenReturn(false);
 
         when(pawn_1_3_z.getX()).thenReturn(1);
         when(pawn_5_5_d.getX()).thenReturn(5);
@@ -96,6 +101,7 @@ public class BoardTest {
         when(pawn_2_1_b.getX()).thenReturn(2);
         when(pawn_4_1_g.getX()).thenReturn(4);
         when(pawn_0_0_n.getX()).thenReturn(0);
+        when(pawn_8_6_h.getX()).thenReturn(8);
 
         when(pawn_1_3_z.getY()).thenReturn(3);
         when(pawn_5_5_d.getY()).thenReturn(5);
@@ -104,6 +110,7 @@ public class BoardTest {
         when(pawn_2_1_b.getY()).thenReturn(1);
         when(pawn_4_1_g.getY()).thenReturn(1);
         when(pawn_0_0_n.getY()).thenReturn(0);
+        when(pawn_8_6_h.getY()).thenReturn(6);
 
     }
 
@@ -539,13 +546,15 @@ public class BoardTest {
      * +                this.addPawn(pawn);
      * l.115
      * +     * @return True if the pawn has been placed or false either.
+     * l.123
+     * -        if (pawn.getX() <= xSize && pawn.getY() <= ySize) {
+     * +        if (pawn.getX() < xSize && pawn.getY() < ySize) {
      * l.126
      * +            } else {
      * +                unplacedPawns.add(pawn);
      * +            }
      * +        } else {
      * +            unplacedPawns.add(pawn);
-     *
      * </pre>
      */
     @Test
@@ -553,7 +562,9 @@ public class BoardTest {
         addPawns();
         ArrayList<Pawn> unplacedPaws = new ArrayList<>();
         unplacedPaws.add(pawn_5_5_y);
+        unplacedPaws.add(pawn_8_6_h);
         board.addPawn(pawn_5_5_y);
+        board.addPawn(pawn_8_6_h);
         assertEquals(unplacedPaws, board.getUnplacedPawns());
     }
 }
