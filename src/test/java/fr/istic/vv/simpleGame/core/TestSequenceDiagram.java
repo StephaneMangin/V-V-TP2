@@ -24,14 +24,14 @@ public class TestSequenceDiagram {
         board = new Board(0, 5, 5, 0, 0);
         Pawn mockPawn0 = mock(Pawn.class);
         Pawn mockPawn1 = mock(Pawn.class);
-        board.addPawn(mockPawn0);
-        board.addPawn(mockPawn1);
         when(mockPawn0.getGold()).thenReturn(1);
         when(mockPawn1.getGold()).thenReturn(3);
         when(mockPawn0.getX()).thenReturn(3);
         when(mockPawn0.getY()).thenReturn(3);
         when(mockPawn1.getX()).thenReturn(4);
         when(mockPawn1.getY()).thenReturn(4);
+        board.addPawn(mockPawn0);
+        board.addPawn(mockPawn1);
 
         // Test isGameOver with a mocked Board
         mockBoard = mock(Board.class);
