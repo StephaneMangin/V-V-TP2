@@ -10,6 +10,6 @@ Au vu du graphe de dépendances, nous allons simuler le comportement de `Pawn` d
 
 ## Question 3 : 
 
-Les classes à mockées sont respectivement, Board pour le test des use case d'un Game dans l'état game-over et Pawn pour le test de la méthode maxGold de la classe Board.
+Les classes à mockées sont respectivement, `Board` pour le test des use case d'un `Game` dans l'état game-over et `Pawn` pour le test de la méthode maxGold de la classe `Board`.
 La raison la limitation des dépendances entre classes, ne connaissant pas l'ordre d'exécution des tests.
 
