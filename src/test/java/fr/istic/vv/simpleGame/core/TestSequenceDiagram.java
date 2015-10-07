@@ -88,7 +88,7 @@ public class TestSequenceDiagram {
     }
 
     /**
-     * Tests the "maxGold" board's method with 10 pawns.
+     * Tests the "maxGold" board's method with 10 pawns in constructor.
      *
      * @see Board#maxGold()
      * @type Functional
