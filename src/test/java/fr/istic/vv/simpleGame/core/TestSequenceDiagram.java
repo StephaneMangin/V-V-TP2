@@ -32,7 +32,7 @@ public class TestSequenceDiagram {
     }
 
     /**
-     * Tests the "isGameOver" game's method with mocked board.
+     * Tests the "isGameOver" game's method with a mocked board and 3 points use case.
      *
      * @see Game#isGameOver()
      * @type Functional
@@ -40,11 +40,27 @@ public class TestSequenceDiagram {
      * @passed Yes
      */
     @Test
-    public void testIsGameOverTrue() throws Exception {
+    public void testIsGameOverTrueWithPoints() throws Exception {
         Board mockBoard = mock(Board.class);
         Game game = new Game(mockBoard);
         when(mockBoard.numberOfPawns()).thenReturn(2);
         when(mockBoard.maxGold()).thenReturn(3);
+        assertTrue(game.isGameOver());
+    }
+
+    /**
+     * Tests the "isGameOver" game's method with a mocked board and one left pawn use case.
+     *
+     * @see Game#isGameOver()
+     * @type Functional
+     * @oracle Should return true
+     * @passed Yes
+     */
+    @Test
+    public void testIsGameOverTrueWithPawnsNumber() throws Exception {
+        Board mockBoard = mock(Board.class);
+        Game game = new Game(mockBoard);
+        when(mockBoard.numberOfPawns()).thenReturn(1);
         assertTrue(game.isGameOver());
     }
 

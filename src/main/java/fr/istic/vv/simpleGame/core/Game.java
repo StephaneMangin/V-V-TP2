@@ -44,8 +44,9 @@ public class Game {
      */
     public String toString() {
         String result = board.toString();
-        if (isGameOver())
-            result +="\n\n Game over";
+        if (isGameOver()) {
+            result += "\n\n Game over";
+        }
         return result;
     }
 
@@ -55,8 +56,7 @@ public class Game {
      * @return A message regarding what happened.
      * @throws OutOfBoardException If the move is invalid regarding the board.
      */
-    public String moveNextPawn(Direction d) throws
-        OutOfBoardException {
+    public String moveNextPawn(Direction d) throws OutOfBoardException {
         return this.board.getNextPawn().move(d);
     }
 

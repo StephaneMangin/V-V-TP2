@@ -66,7 +66,7 @@ public class Pawn {
         this.x = x;
         this.y = y;
         this.board = board;
-        this.hitpoints = 2;
+        this.hitpoints = 5;
         this.gold = 0;
     }
 
@@ -77,8 +77,7 @@ public class Pawn {
      * @return A message that explain what happened during the movement.
      * @throws OutOfBoardException If the pawn tries to move out of the board.
      */
-    public String move(Direction d) throws
-        OutOfBoardException {
+    public String move(Direction d) throws OutOfBoardException {
 
         String message = "";
 
@@ -126,11 +125,14 @@ public class Pawn {
      */
     private String attack(Pawn enemy) {
         String message=this.letter + " attacks!\n";
-        if (this.board.isBonusSquare(x, y))
-            message+=enemy.suffer(2);
-        else
-            message+=enemy.suffer(1);
-        if (enemy.isDead()) gold++;
+        if (this.board.isBonusSquare(x, y)) {
+            message += enemy.suffer(2);
+        } else {
+            message += enemy.suffer(1);
+        }
+        if (enemy.isDead()) {
+            gold++;
+        }
         return message;
     }
 
@@ -142,12 +144,11 @@ public class Pawn {
      * @return A message that explain what happened with the wounds.
      */
     private String suffer(int i) {
-        String message = this.letter+" loses "+i
-                         +" hitpoints.";
+        String message = this.letter + " loses " + i + " hitpoints.";
         hitpoints = hitpoints - i;
         if (hitpoints <= 0) {
             this.board.removePawn(this);
-            message += this.letter+" is dead.";
+            message += this.letter + " is dead.";
         }
         return message;
     }
