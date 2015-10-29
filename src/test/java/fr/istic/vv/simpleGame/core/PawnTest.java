@@ -106,6 +106,9 @@ public class PawnTest {
         try {
             pawn2.move(Direction.Up);
             pawn2.move(Direction.Up);
+            pawn2.move(Direction.Up);
+            pawn2.move(Direction.Up);
+            pawn2.move(Direction.Up);
         } catch (OutOfBoardException e) {
             e.printStackTrace();
         }
@@ -158,6 +161,9 @@ public class PawnTest {
      * l.28 on CLIMain
      * -                                       Direction.values()[chosenint]));
      * +                                       Direction.values()[choice]));
+     * l.161 on Pawn
+     * -  return this.hitpoints == 0;
+     * +  return this.hitpoints <= 0;
      * </pre>
      */
     @Test
@@ -167,6 +173,8 @@ public class PawnTest {
         board.addPawn(pawn1);
         board.addPawn(pawn2);
         try {
+            pawn2.move(Direction.Up);
+            pawn2.move(Direction.Up);
             pawn2.move(Direction.Up);
         } catch (OutOfBoardException e) {
             e.printStackTrace();
@@ -306,7 +314,7 @@ public class PawnTest {
      *
      * @see Pawn#isDead()
      * @type Functional
-     * @input A pawn which has received 2 hits and an other 1
+     * @input A pawn which has received 5 hits and an other 4
      * @oracle  should return true for pawn 1 and false for pawn 2
      * @passed Yes
      */
@@ -317,6 +325,12 @@ public class PawnTest {
         board.addPawn(pawn1);
         board.addPawn(pawn2);
         try {
+            pawn2.move(Direction.Up);
+            pawn1.move(Direction.Down);
+            pawn2.move(Direction.Up);
+            pawn1.move(Direction.Down);
+            pawn2.move(Direction.Up);
+            pawn1.move(Direction.Down);
             pawn2.move(Direction.Up);
             pawn1.move(Direction.Down);
             pawn2.move(Direction.Up);

@@ -158,7 +158,7 @@ public class Pawn {
      * @return True if the pawn is dead, false otherwise.
      */
     public boolean isDead() {
-    	return this.hitpoints == 0;
+    	return this.hitpoints <= 0;
     }
 
 
